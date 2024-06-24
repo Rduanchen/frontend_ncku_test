@@ -1,10 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
+import PriceOverview from '@/pages/PriceOverview.vue';
 
 const routes = [
   {
     path: '/overview',
     name: 'PriceOverview',
-    component: () => import('@/pages/PriceOverview.vue')
+    component: PriceOverview
   },
 ];
 
