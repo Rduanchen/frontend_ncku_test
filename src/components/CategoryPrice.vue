@@ -8,7 +8,7 @@
                 <tr>
                     <th>商品名稱</th>
                     <th>規格</th>
-                    <th>最新價格</th>
+                    <th>{{latestDataTime}} 最新價格</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,18 +42,25 @@ export default {
         errorMessage: {
             type: String,
             required: false
-        }
+        },
     },
     computed: {
         categoryName() {
             return Categories[this.category];
         },
-
+        latestDataTime(){
+            let timeTmp = this.priceData[0].時間終點.split('-');
+            return timeTmp[0] + '.' + timeTmp[1];
+        }
     },
     methods: {
         latestPrice(prices_str) {
             let number = prices_str.split(',').map(Number);
-            return number[number.length - 1];
+            let i = number.length - 1;
+            while (i >= 0 && number[i]==0) {
+                i--;
+            }
+            return i==-1 ? "-" : number[i];
         }
     }
 };
