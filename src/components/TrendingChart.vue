@@ -1,7 +1,7 @@
 <template>
-    <!-- <div class="chart-container"> -->
-    <canvas id="trendingChart"></canvas>
-    <!-- </div> -->
+    <div class="chart-container">
+        <canvas id="trendingChart"></canvas>
+    </div>
 </template>
 
 <script>
@@ -41,7 +41,7 @@ export default {
                 labels = labels.slice(firstNonZeroIndex);
             }
 
-            // 替換中間的0值並記錄點的位置來標註
+            // 替換中間的0並記錄點的位置來標註
             let lastValidPrice = prices[0];
             const annotations = [];
             prices = prices.map((price, index) => {
@@ -77,6 +77,7 @@ export default {
                         duration: 300,
                     },
                     responsive: true,
+                    maintainAspectRatio: false,
                 }
             });
         },
@@ -96,5 +97,10 @@ export default {
 </script>
 
 <style scoped>
-
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 30vh;
+    width: 100wh;
+}
 </style>

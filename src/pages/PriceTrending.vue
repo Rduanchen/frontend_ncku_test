@@ -16,8 +16,8 @@
             </div>
             <div v-if="selectedProduct" class="visualize">
                 <TrendingChart v-if="selectedProduct" :data="selectedProduct"></TrendingChart>
+                <TrendingTable v-if="selectedProduct" :data="selectedProduct"></TrendingTable>
             </div>
-             <!-- <TrendingTable v-if="selectedProduct" :data="selectedProductData"></TrendingTable> -->
         </div>
     </div>
 </template>
@@ -25,12 +25,12 @@
 <script>
 import { usePricesStore } from '@/stores/prices';
 import Categories from '@/constants/categories';
-//   import TrendingTable from '@/components/TrendingTable.vue';
+import TrendingTable from '@/components/TrendingTable.vue';
 import TrendingChart from '@/components/TrendingChart.vue';
 
 export default {
     components: {
-        //   TrendingTable,
+        TrendingTable,
         TrendingChart
     },
     data() {
@@ -82,6 +82,7 @@ export default {
     min-height: calc(100vh - 4.5em);
     height: calc(100% - 4.5em);
     box-sizing: border-box;
+    width: 100%;
 }
 
 .content {
@@ -89,6 +90,7 @@ export default {
     background-color: #fff;
     border-radius: 1em;
     padding: 2em;
+    width: 100%;
 }
 
 
@@ -108,8 +110,15 @@ export default {
 }
 
 .visualize {
-    margin-top: 2em;
-    display: flex;
-    justify-content: center;
+    /* margin-top: 2em; */
+     /* display: flex; */
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
+}
+
+.visualize > * {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+    padding: 1em;
 }
 </style>
