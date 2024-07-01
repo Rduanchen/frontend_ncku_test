@@ -1,8 +1,13 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import PriceOverview from '@/pages/PriceOverview.vue';
 import PriceTrending from '@/pages/PriceTrending.vue';
+import NewsList from '@/pages/NewsList.vue';
 
 const routes = [
+  {
+    path: '/',
+    redirect: '/overview'
+  },
   {
     path: '/overview',
     name: 'PriceOverview',
@@ -13,6 +18,15 @@ const routes = [
     name: 'PriceTrending',
     component: PriceTrending
   },
+  {
+    path: '/news',
+    name: 'NewsList',
+    component: NewsList
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/overview'
+  }
 ];
 
 const router = createRouter({

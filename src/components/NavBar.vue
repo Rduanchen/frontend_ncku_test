@@ -4,7 +4,7 @@
         <ul class="options">
             <li><router-link to="/overview">物價概覽</router-link></li>
             <li><router-link to="/trending">物價趨勢</router-link></li>
-            <li><router-link to="/">相關報導</router-link></li>
+            <li><router-link to="/news">相關報導</router-link></li>
         </ul>
     </nav>
 </template>

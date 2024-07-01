@@ -109,13 +109,6 @@ export default {
     cursor: pointer;
 }
 
-.visualize {
-    /* margin-top: 2em; */
-     /* display: flex; */
-    /* justify-content: center; */
-    /* flex-wrap: wrap; */
-}
-
 .visualize > * {
     flex: 1 1 50%;
     box-sizing: border-box;
