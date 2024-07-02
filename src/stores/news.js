@@ -20,6 +20,19 @@ export const useNewsStore = defineStore('news', {
                 this.isLoading = false;
             }
         },
+        async promptSearchNews(prompt) {
+            if(this.isLoading) return;
+            this.isLoading = true;
+            this.errorMessage = '';
+            try {
+                const response = await axios.post('http://localhost:8000/api/v1/news/search_news', {prompt: prompt});
+                this.newsList = response.data;
+            } catch (error) {
+                this.errorMessage = 'Error fetching news: ' + error.message;
+            } finally {
+                this.isLoading = false;
+            }            
+        }
     },
     getters: {
         getNews: (state) => {

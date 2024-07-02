@@ -1,6 +1,10 @@
 <template>
     <div class="wrapper">
         <h1>相關新聞</h1>
+        <div class="search-bar">
+            <input v-model="prompt" placeholder="輸入你的搜尋prompt，讓AI幫你找相關的新聞吧！例如：「我想獲取雞蛋價格的資訊」" class="search-input"/>
+            <button @click="searchNewsBasedOnPrompt">搜尋</button>
+        </div>
         <div class="content">
             <div v-if="isLoading">loading...</div>
             <div v-else>
@@ -19,6 +23,12 @@ export default {
     components: {
         NewsItem
     },
+    data() {
+        return {
+            prompt: '',
+            newsStore: useNewsStore()
+        };
+    },
     created() {
         const newsStore = useNewsStore();
 
@@ -34,6 +44,14 @@ export default {
         isLoading() {
             const newsStore = useNewsStore();
             return newsStore.isLoading;
+        }
+    },
+    methods: {
+        searchNewsBasedOnPrompt() {
+            if (this.prompt.trim()) {
+                this.newsStore.promptSearchNews(this.prompt);
+                this.prompt = '';
+            }
         }
     }
 };
@@ -59,5 +77,34 @@ export default {
 }
 .news-item:last-child{
     border-bottom: none;
+}
+.search-bar{
+    background-color: white;
+    display: inline-flex;
+    border-radius: .5em;
+    box-sizing: border-box;
+    text-align: start;
+    margin-top: 1em;
+    padding: 1em;
+    width: 80%;
+}
+
+.search-bar input{
+    border: none;
+    outline: none;
+    font-size: .9em;
+    box-sizing: border-box;
+    flex-grow: 1;
+    margin-right: 1em;
+}
+
+.search-bar button{
+    border: none;
+    background-color: #f3f3f3;
+    padding: .5em 1em;
+    border-radius: 1em;
+}
+.search-bar button:hover{
+    cursor: pointer;
 }
 </style>
