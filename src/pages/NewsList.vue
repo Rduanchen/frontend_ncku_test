@@ -3,14 +3,18 @@
         <h1>相關新聞</h1>
         <div class="search-bar">
             <input v-model="prompt" placeholder="輸入你的搜尋prompt，讓AI幫你找相關的新聞吧！例如：「我想獲取雞蛋價格的資訊」" class="search-input"/>
-            <button @click="searchNewsBasedOnPrompt">搜尋</button>
+            <i class="bi bi-search" @click="searchNewsBasedOnPrompt"></i>
         </div>
         <div class="content">
             <div v-if="isLoading">loading...</div>
             <div v-else>
-                <NewsItem v-for="news in newsList" :key="news.id" :news="news" />
+                <NewsItem v-for="news in newsList" :key="news.id" :news="news" @click="showDialog(news)"/>
+                <div v-if="isEmpty">
+                    <p>找不到相關新聞！</p>
+                </div>
             </div>
         </div>
+        <NewsDialog :news="selectedNews" v-model:visible="isDialogVisible" />
     </div>
 </template>
 
@@ -18,32 +22,35 @@
 import { useNewsStore } from '@/stores/news';
 import { onMounted } from 'vue';
 import NewsItem from '@/components/NewsItem.vue';
+import NewsDialog from '@/components/NewsDialog.vue';
 
 export default {
     components: {
-        NewsItem
+        NewsItem,
+        NewsDialog
     },
     data() {
         return {
             prompt: '',
-            newsStore: useNewsStore()
+            newsStore: useNewsStore(),
+            selectedNews: null,
+            isDialogVisible: false
         };
     },
     created() {
-        const newsStore = useNewsStore();
-
         onMounted(() => {
-            newsStore.fetchNews();
+            this.newsStore.fetchNews();
         });
     },
     computed: {
         newsList() {
-            const newsStore = useNewsStore();
-            return newsStore.newsList;
+            return this.newsStore.getNews;
         },
         isLoading() {
-            const newsStore = useNewsStore();
-            return newsStore.isLoading;
+            return this.newsStore.isLoading;
+        },
+        isEmpty() {
+            return this.newsStore.newsList.length === 0;
         }
     },
     methods: {
@@ -52,6 +59,10 @@ export default {
                 this.newsStore.promptSearchNews(this.prompt);
                 this.prompt = '';
             }
+        },
+        showDialog(news) {
+            this.selectedNews = news;
+            this.isDialogVisible = true;
         }
     }
 };
@@ -98,12 +109,10 @@ export default {
     margin-right: 1em;
 }
 
-.search-bar button{
-    border: none;
-    background-color: #f3f3f3;
-    padding: .5em 1em;
-    border-radius: 1em;
+.search-bar i{
+    cursor: pointer;
 }
+
 .search-bar button:hover{
     cursor: pointer;
 }

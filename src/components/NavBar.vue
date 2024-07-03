@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar">
-        <div class="title">價格追蹤小幫手</div>
+        <div class="title"> <router-link to="/overview">價格追蹤小幫手</router-link></div>
         <ul class="options">
             <li><router-link to="/overview">物價概覽</router-link></li>
             <li><router-link to="/trending">物價趨勢</router-link></li>
-            <li><router-link to="/news">相關報導</router-link></li>
+            <li><router-link to="/news">相關新聞</router-link></li>
         </ul>
     </nav>
 </template>
@@ -33,9 +33,10 @@ export default {
     justify-content: space-around;
 }
 
-.title{
+.title > a{
     font-size: 1.4em;
     font-weight: bold;
+    color: #2c3e50 !important;
 }
 
 .navbar li {

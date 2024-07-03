@@ -107,6 +107,7 @@ export default {
     border: 1px solid #ccc;
     outline: none;
     cursor: pointer;
+    appearance: auto !important;
 }
 
 .visualize > * {
