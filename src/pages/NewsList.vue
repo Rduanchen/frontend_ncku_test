@@ -8,7 +8,8 @@
         <div class="content">
             <div v-if="isLoading">loading...</div>
             <div v-else>
-                <NewsItem v-for="news in newsList" :key="news.id" :news="news" @click="showDialog(news)"/>
+                <NewsItem v-for="(news, index) in newsList" :key="news.id" :news="news" 
+                    @show-dialog="showDialog(news)" @fetch-summary="fetchSummary(news.content, index)"/>
                 <div v-if="isEmpty">
                     <p>找不到相關新聞！</p>
                 </div>
@@ -63,6 +64,9 @@ export default {
         showDialog(news) {
             this.selectedNews = news;
             this.isDialogVisible = true;
+        },
+        fetchSummary(content, index){
+            this.newsStore.fetchNewsSummary(content, index);
         }
     }
 };
