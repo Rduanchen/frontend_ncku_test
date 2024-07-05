@@ -5,13 +5,33 @@
             <li><router-link to="/overview">物價概覽</router-link></li>
             <li><router-link to="/trending">物價趨勢</router-link></li>
             <li><router-link to="/news">相關新聞</router-link></li>
+            <li v-if="!isLoggedIn"><router-link to="/login">登入</router-link></li>
+            <li v-else @click="logout">Hi, {{getUserName}}! 登出</li>
         </ul>
     </nav>
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth';
+
 export default {
-    name: 'NavBar'
+    name: 'NavBar',
+    computed: {
+        isLoggedIn(){
+            const userStore = useAuthStore();
+            return userStore.isLoggedIn;
+        },
+        getUserName(){
+            const userStore = useAuthStore();
+            return userStore.getUserName;
+        }
+    },
+    methods: {
+        logout(){
+            const userStore = useAuthStore();
+            userStore.logout();
+        }
+    }
 };
 </script>
 

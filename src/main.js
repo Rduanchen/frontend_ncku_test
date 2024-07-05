@@ -3,6 +3,7 @@ import App from './App.vue'
 import './assets/reset.css'
 import { createPinia } from 'pinia'
 import router from './router'
+import { useAuthStore } from './stores/auth';
 
 //Vuetify
 import 'vuetify/styles'
@@ -21,8 +22,12 @@ const vuetify = createVuetify({
     directives,
 })
 
+
 app.use(pinia)
     .use(router)
     .use(vuetify)
     .use(BootstrapIconsPlugin)
     .mount('#app');
+
+const authStore = useAuthStore();
+authStore.initializeFromLocalStorage(); //初始化登入token
