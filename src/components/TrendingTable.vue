@@ -50,15 +50,13 @@ export default {
     },
     methods: {
         getYearData(year) {
-            console.log(this.yearData);
             return this.yearData[year];
         },
         processInitData() {
-            const startMonth = new Date(this.data.時間起點).getMonth()+1;
-            const endMonth = new Date(this.data.時間終點).getMonth()+1;
+            const startMonth = new Date(this.data.時間起點).getMonth() + 1;
+            const endMonth = new Date(this.data.時間終點).getMonth() + 1;
             const startYear = new Date(this.data.時間起點).getFullYear();
             const endYear = new Date(this.data.時間終點).getFullYear();
-            console.log(startMonth, endMonth, startYear, endYear);
             this.yearData = {};
             for (let year = startYear; year <= endYear; year++) {
                 let yearPrices = [];
@@ -78,7 +76,17 @@ export default {
             return value === '0' ? '-' : value;
         }
     },
-    created(){
+    watch: {
+        data: {
+            deep: true,
+            handler(newVal) {
+                if (newVal) {
+                    this.processInitData();
+                }
+            }
+        }
+    },
+    created() {
         this.processInitData();
     }
 };

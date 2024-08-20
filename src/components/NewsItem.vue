@@ -55,7 +55,6 @@ export default {
             this.$emit('fetch-summary');
         },
         toggleUpvote(newsId){
-            console.log(this.news.is_upvoted, newsId)
             useNewsStore().toggleUpvote(newsId);
         }
     }
