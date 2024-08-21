@@ -7,7 +7,7 @@
                 <input v-model="password" type="password" placeholder="Password" required>
                 <p v-if="loginError" class="error">{{ loginError }}</p>
                 <div class="ops">
-                    <button type="button" id="register"><router-link to="/register">註冊</router-link></button>
+                    <button type="button" id="register"><RouterLink to="/register">註冊</RouterLink></button>
                     <button type="submit" id="login">登入</button>
                 </div>
             </form>

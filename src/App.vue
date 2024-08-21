@@ -1,9 +1,10 @@
 <template>
   <NavBar class="navbar"></NavBar>
-  <router-view class="render"></router-view>
+  <RouterView class="render"></RouterView>
 </template>
 
 <script>
+// import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue'
 export default {
   name: 'App',

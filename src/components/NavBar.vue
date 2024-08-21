@@ -1,11 +1,11 @@
 <template>
     <nav class="navbar">
-        <div class="title"> <router-link to="/overview">價格追蹤小幫手</router-link></div>
+        <div class="title"> <RouterLink to="/overview">價格追蹤小幫手</RouterLink></div>
         <ul class="options">
-            <li><router-link to="/overview">物價概覽</router-link></li>
-            <li><router-link to="/trending">物價趨勢</router-link></li>
-            <li><router-link to="/news">相關新聞</router-link></li>
-            <li v-if="!isLoggedIn"><router-link to="/login">登入</router-link></li>
+            <li><RouterLink to="/overview">物價概覽</RouterLink></li>
+            <li><RouterLink to="/trending">物價趨勢</RouterLink></li>
+            <li><RouterLink to="/news">相關新聞</RouterLink></li>
+            <li v-if="!isLoggedIn"><RouterLink to="/login">登入</RouterLink></li>
             <li v-else @click="logout">Hi, {{getUserName}}! 登出</li>
         </ul>
     </nav>
