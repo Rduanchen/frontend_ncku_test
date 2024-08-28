@@ -1,17 +1,15 @@
 <template>
-  <router-view></router-view>
   <NavBar class="navbar"></NavBar>
-  <!-- <PriceOverview></PriceOverview> -->
+  <RouterView class="render"></RouterView>
 </template>
 
 <script>
+// import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue'
-// import PriceOverview from './pages/PriceOverview.vue'
 export default {
   name: 'App',
   components: {
     NavBar,
-    // PriceOverview
   }
 }
 </script>
@@ -30,6 +28,6 @@ export default {
   top: 0;
 }
 .render{
-  margin-top: 5em;
+  margin-top: 4.5em;
 }
 </style>

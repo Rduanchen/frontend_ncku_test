@@ -1,5 +1,5 @@
 const Categories = {
-    MILK: '牛奶',
+    MILK: '鮮乳',
     POWDER: '奶粉',
     RICE: '米',
     EGG: '雞蛋',
